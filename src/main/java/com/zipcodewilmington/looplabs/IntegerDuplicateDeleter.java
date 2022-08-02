@@ -13,24 +13,40 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
-        ArrayList<Integer> removed = new ArrayList<>();
+        int newArraySize = 0;
         for (Integer integer : array) {
             if (counter(integer) < maxNumberOfDuplications) {
-                removed.add(integer);
+                newArraySize++;
             }
         }
-        return removed.toArray(new Integer[0]);
+        Integer[] removedArray = new Integer[newArraySize];
+        int t = 0;
+        for (Integer integer : array) {
+            if (counter(integer) < maxNumberOfDuplications) {
+                removedArray[t] = integer;
+                t++;
+            }
+        }
+        return removedArray;
     }
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        ArrayList<Integer> removed = new ArrayList<>();
+        int newArraySize = 0;
         for (Integer integer : array) {
             if (counter(integer) != exactNumberOfDuplications) {
-                removed.add(integer);
+                newArraySize++;
             }
         }
-        return removed.toArray(new Integer[0]);
+        Integer[] removedArray = new Integer[newArraySize];
+        int t = 0;
+        for (Integer integer : array) {
+            if (counter(integer) != exactNumberOfDuplications) {
+                removedArray[t] = integer;
+                t++;
+            }
+        }
+        return removedArray;
     }
 
     public int counter(int integer) {
